@@ -1,0 +1,11 @@
+A simple x86 16-bit real mode program that can be installed
+in the master boot record of any device and then boots up.
+This program just uses main.asm as a driver and then calls
+the functions in printaddr.asm to print out an address in hex. 
+
+To compile:
+
+nasm main.asm -f bin -o main
+
+To run:
+qemu main

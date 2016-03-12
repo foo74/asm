@@ -1,0 +1,3 @@
+to compile
+
+nasm file.asm -f bin -o file
