@@ -2,7 +2,7 @@
 ; function that prints two bytes in hex output
 ; assumes the value is stored in the dx register
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-PRINT_ADDR:
+printaddr:
 ; respect the registers and push the values on the stack
 pusha
 
@@ -18,14 +18,14 @@ mov cx, 0x0000
 ; store a duplicate in cl so we can get the second byte
 mov bl, dh
 mov cl, dh
-call PRINT_BYTE
+call printbyte
 
 mov bx, 0x0000
 mov cx, 0x0000
 
 mov bl, dl
 mov cl, dl
-call PRINT_BYTE
+call printbyte
 
 ; respect the registers and pop the values off the stack.
 popa

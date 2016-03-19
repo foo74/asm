@@ -1,5 +1,5 @@
 ; function to print a byte, assumes byte is in bl and cl both contain the same byte
-PRINT_BYTE:
+printbyte:
 ; respect the registers by pushing them all on the stack
 pusha
 

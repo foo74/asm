@@ -1,3 +1,8 @@
-to compile
+A wrapper that calls the printstring and printaddr
+as an example.
 
-nasm file.asm -f bin -o file
+to compile:
+nasm main.asm -f bin -o main
+
+to run:
+qemu main

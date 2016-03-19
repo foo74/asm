@@ -4,7 +4,7 @@
 ; test by putting in a hex value to dx register
 mov dx, 0x1a3f
 
-call PRINT_ADDR
+call printaddr
 
 
 ; jump infinitely
