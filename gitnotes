@@ -1,3 +1,13 @@
+For a new directory:
+git init
+git remote add origin https://github.com/foo74/<repo>.git
+
+After editing:
+git status
+git add .
+git commit -m 'my message'
+git push -u origin master
+
 
 
 After your Github repository has been created (i.e. you can view it on Github), then you should already have:
