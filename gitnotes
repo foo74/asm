@@ -1,6 +1,7 @@
 For a new directory:
 git init
 git remote add origin https://github.com/foo74/<repo>.git
+git pull origin master
 
 After editing:
 git status
