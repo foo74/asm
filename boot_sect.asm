@@ -88,9 +88,9 @@ BEGIN_PM:
 ; to print out so we know what is happening as we bootstrap
 ; our kernel.
 BOOT_DRIVE: db 0
-MSG_REAL_MODE: db "Started in 16 bit Real Mode", 0
-MSG_PROT_MODE: db "Successfully landed in 32 bit Protected Mode", 0
-MSG_LOAD_KERNEL: db "Loading kernel into memory.", 0
+MSG_REAL_MODE: db "Started in 16 bit Real Mode. ", 0
+MSG_PROT_MODE: db "Successfully landed in 32 bit Protected Mode. ", 0
+MSG_LOAD_KERNEL: db "Loading kernel into memory. ", 0
 
 ; Pad the end of the first sector with 0 so we have exactly
 ; 510 bytes and then 511 and 512 are the magic number so that
