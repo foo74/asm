@@ -4,7 +4,7 @@
 ; assumes DH is the number of sectors to read
 ; assumes DL contains the drive to read from
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-diskload:
+disk_load:
 
 ; store dx on stack so later we can recall how many sectors were
 ; requested to be read, even if it is altered in the meantime
@@ -38,11 +38,11 @@ ret
 
 DISK_ERROR1:
 mov bx, DISK_ERROR_MSG1
-call printstring
+call print_string
 
 DISK_ERROR2:
 mov bx, DISK_ERROR_MSG2
-call printstring
+call print_string
 
 ; should never get here unless an error message is printed
 jmp $

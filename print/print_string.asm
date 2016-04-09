@@ -1,8 +1,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; A simple function that is used to pring a string until the \0 is found.
+; A simple function that is used to print a string until the \0 is found.
 ; To use it move a string into bx register and then call this printstring function.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-printstring:
+print_string:
 ; the bx register contains the 16-bit address of the start of our string. need to load the
 ; value at that first address, which is the ascii code of our first char.
 ; load the value, the ascii code, of the first char in our string into ax low register, al
