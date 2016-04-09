@@ -1,4 +1,9 @@
+Development Platform
+OS: Ubuntu 15.10 - GNU/Linux 4.2.0-35-generic, 64-bit
+Hardware: 7.7 GiB RAM, Intel Core i7-4500 CPU @ 1.80GHz x 4
+
 To build:
+make clean
 make 
 
 to run:
