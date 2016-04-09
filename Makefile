@@ -6,6 +6,11 @@
 # Default target is our custom kernel.
 all: os-image
 
+run: all
+	qemu-system-x86_64 \
+ 		-drive file=os-image,format=raw,index=0,media=disk \
+    		-drive file=os-image,format=raw,index=1,media=disk
+
 # The binary of our kernel that we will cat with boot sector code.
 kernel.bin: kernel_entry.o kernel.o kernel.o
 	ld -melf_i386 -o kernel.bin -Ttext 0x1000 kernel_entry.o kernel.o --oformat binary
@@ -29,4 +34,4 @@ os-image: boot_sect.o kernel.bin kernel_entry.o
 
 # Clean all the binary and object files.
 clean:
-	rm *.bin *.o
+	rm *.bin *.o os-image
