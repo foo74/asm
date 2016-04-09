@@ -9,10 +9,10 @@ so that it won't give a warning. So we pass in the binary as a variable.
 
 -----------
 
-When we get to the point that we are going to load the C kernel we have to pad the os-image with extra space to make it big enough to read 15 sectors. If you don't do this then you will get disk read errors.
+When we get to the point that we are going to load the C kernel we have to pad the os-image with extra space to make it big enough to read 15 sectors. If you don't do this then you will get disk read errors. We need the -m32 since we are compiling on Ubuntu 64-bit but creating a 32-bit output. Also, we need the -melf_i386 in the ld command for same reason. It spots the -m32 from the gcc and knows to create a 32-bit output.
 
-gcc -ffreestanding -c kernel.c -o kernel.o
-ld -o kernel.bin -Ttext 0x1000 kernel.o --oformat binary
+gcc -m32 -ffreestanding -c kernel.c -o kernel.o
+ld -melf_i386 -o kernel.bin -Ttext 0x1000 kernel_entry.o kernel.o --oformat binary
 cat boot_sect.bin kernel.bin > os-image
-dd if=/dev/zero bs=512 count=20 >> os-image
+dd if=/dev/zero bs=512 count=60 >> os-image
 ./run_qemu os-image
