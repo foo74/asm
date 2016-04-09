@@ -1,12 +1,18 @@
-A wrapper that calls the printstring and printaddr
-as an example.
-
 to compile:
 nasm main.asm -f bin -o main
 
 to run:
 ./run_qemu main
 
-
 The reason for the run_qemu bash script is that qemu now needs to specify format of raw
 so that it won't give a warning. So we pass in the binary as a variable.
+
+-----------
+
+When we get to the point that we are going to load the C kernel we have to pad the os-image with extra space to make it big enough to read 15 sectors. If you don't do this then you will get disk read errors.
+
+gcc -ffreestanding -c kernel.c -o kernel.o
+ld -o kernel.bin -Ttext 0x1000 kernel.o --oformat binary
+cat boot_sect.bin kernel.bin > os-image
+dd if=/dev/zero bs=512 count=20 >> os-image
+./run_qemu os-image

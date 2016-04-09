@@ -12,7 +12,7 @@ mov sp, bp
 
 ; set 0x9000 as the place where we will read the contents into
 mov bx, 0x9000
-mov dh, 2
+mov dh, 15
 mov dl, [BOOT_DRIVE]
 
 ; call the diskload function, bx and dh, and dl are set for it
@@ -30,9 +30,9 @@ call printaddr
 jmp $
 
 ; include a function
-%include "../print/print_string.asm"
-%include "../print/printaddr.asm"
-%include "../disk/disk_load.asm"
+%include "print/print_string.asm"
+%include "print/printaddr.asm"
+%include "disk/disk_load.asm"
 
 BOOT_DRIVE: db 0
 startme: db 'calling diskload...', 0
