@@ -2,7 +2,7 @@ To build:
 make 
 
 to run:
-./run_qemu main
+./run_qemu os-image
 
 
 
