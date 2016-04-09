@@ -1,8 +1,14 @@
-to compile:
-nasm main.asm -f bin -o main
+To build:
+make 
 
 to run:
 ./run_qemu main
+
+
+
+---------------------NOTES----------------------
+to compile:
+nasm main.asm -f bin -o main
 
 The reason for the run_qemu bash script is that qemu now needs to specify format of raw
 so that it won't give a warning. So we pass in the binary as a variable.
