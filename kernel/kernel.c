@@ -1,4 +1,5 @@
 #include "../drivers/screen.h"
+#include "../drivers/low_level.h"
 
 void main()
 {
@@ -12,5 +13,4 @@ void main()
 
    print_message(video_memory, hello);
    set_cursor();
-   
 }

@@ -28,6 +28,7 @@ void port_word_out(unsigned short port, unsigned short data)
    __asm__("out %%ax, %%dx" : :"a" (data), "d" (port));
 }
 
+/* https://littleosbook.github.io/#moving-the-cursor provide info how */
 void set_cursor()
 {
    port_byte_out(REG_SCREEN_CTRL, 14);
