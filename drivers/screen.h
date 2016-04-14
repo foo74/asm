@@ -17,19 +17,11 @@
 #define GREEN_ON_BLACK 0x02
 #define CHAR_COLOR 0x02
 #define VIDEO_MEMORY 0xb8000
-#define VIDEO_ADDRESS 0xb8000
 #define MAX_COLS 80
 #define MAX_ROWS 25
-/* Screen device I/O ports. */
-#define REG_SCREEN_CTRL 0x3D4
-#define REG_SCREEN_DATA 0x3D5
 
 
 void set_cursor();
 void print_char(char character, int col, int row, char attribute_byte);
-unsigned char port_byte_in(unsigned short port);
-void port_byte_out(unsigned short port, unsigned char data);
-unsigned short port_word_in(unsigned short port);
-void port_word_out(unsigned short port, unsigned short data);
 void clear_screen(char *);
 void print_message(char* video_memory, char s[]);

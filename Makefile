@@ -12,12 +12,16 @@ run: all
     		-drive file=os-image,format=raw,index=1,media=disk
 
 # The binary of our kernel that we will cat with boot sector code.
-kernel/kernel.bin: kernel/kernel_entry.o kernel/kernel.o drivers/screen.o
-	ld -melf_i386 -o kernel/kernel.bin -Ttext 0x1000 kernel/kernel_entry.o kernel/kernel.o drivers/screen.o --oformat binary
+kernel/kernel.bin: kernel/kernel_entry.o kernel/kernel.o drivers/screen.o drivers/low_level.o
+	ld -melf_i386 -o kernel/kernel.bin -Ttext 0x1000 kernel/kernel_entry.o kernel/kernel.o drivers/screen.o drivers/low_level.o --oformat binary
 
-# Driver for IO.
+# Driver for screen IO.
 drivers/screen.o : drivers/screen.c
 	gcc -m32 -ffreestanding -c drivers/screen.c -o drivers/screen.o
+
+# Driver for low level IO.
+drivers/low_level.o : drivers/low_level.c
+	gcc -m32 -ffreestanding -c drivers/low_level.c -o drivers/low_level.o
 
 # The main kernel code.
 kernel/kernel.o : kernel/kernel.c 

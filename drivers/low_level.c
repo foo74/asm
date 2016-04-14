@@ -1,3 +1,4 @@
+#include "low_level.h"
 /*****************************************************************************
  * A C wrapper function that reads a byte from the specified port
  * "=a" (result) means: put AL register in variable RESULT when finished
@@ -25,4 +26,12 @@ unsigned short port_word_in(unsigned short port)
 void port_word_out(unsigned short port, unsigned short data)
 {
    __asm__("out %%ax, %%dx" : :"a" (data), "d" (port));
+}
+
+void set_cursor()
+{
+   port_byte_out(REG_SCREEN_CTRL, 14);
+   port_byte_out(REG_SCREEN_DATA, 0x00);
+   port_byte_out(REG_SCREEN_CTRL, 15);
+   port_byte_out(REG_SCREEN_DATA, 0x50);
 }
