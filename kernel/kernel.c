@@ -12,5 +12,5 @@ void main()
    clear_screen(video_memory);
 
    print_message(video_memory, hello);
-   set_cursor();
+   set_cursor(5, 79);
 }

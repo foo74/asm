@@ -21,7 +21,6 @@
 #define MAX_ROWS 25
 
 
-void set_cursor();
 void print_char(char character, int col, int row, char attribute_byte);
 void clear_screen(char *);
 void print_message(char* video_memory, char s[]);
