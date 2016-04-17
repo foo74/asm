@@ -7,10 +7,14 @@ void main()
     * of video memory (i.e. the top-left of the screen). */
    char* video_memory =  (char *)VIDEO_MEMORY;
    char hello[] = "HELLO";
-   int i;
+   int cursor;
 
    clear_screen(video_memory);
 
-   print_message(video_memory, hello);
-   set_cursor(5, 79);
+   print_char('a', 5, 0, 0);
+/*
+   set_cursor(5, 0);
+   cursor = get_cursor();
+   print_message(cursor+video_memory, hello);
+*/
 }
