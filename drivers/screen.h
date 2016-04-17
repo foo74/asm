@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include "../kernel/util.h"
 /* #include <stdint.h> so we can cast int to pointer type on line 19. */
 
 /**************************************************************************
@@ -25,6 +26,6 @@
 void print_char(char character, int col, int row, char attribute_byte);
 void clear_screen(char *);
 void print_message(char* video_memory, char s[]);
-int get_screen_offset(int, int);
 void set_cursor(int, int);
 int get_cursor();
+int handle_scrolling(int);

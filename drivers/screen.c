@@ -12,19 +12,11 @@ void print_char(char character, int row, int col, char attribute_byte)
    set_cursor(row, col);
 
    offset = get_cursor();
-/*
-   int offset;
-   if (col >= 0 && row >= 0)
-      offset = get_screen_offset(col, row);
-   else
-      offset = get_cursor();
-
-*/
 
    if (character == '\n')
    {
       int rows = offset / (2*MAX_COLS);
-      offset = get_screen_offset(79, rows);
+      /*offset = get_screen_offset(79, rows);*/
    }
    else
    {
@@ -36,12 +28,21 @@ void print_char(char character, int row, int col, char attribute_byte)
    set_cursor(row, col + 1);
 }
 
-int get_screen_offset(int col, int row)
+int handle_scrolling(int cursor_offset)
 {
-   int offset;
-   offset =0;
+   int i;
+   unsigned char *video_memory = (unsigned char *)VIDEO_MEMORY;
 
-   return offset;
+   /* if cursor is in the start buffer size then don't scroll */
+   if (cursor_offset < (MAX_ROWS*MAX_COLS*2))
+      return cursor_offset;
+
+   for (i=1; i<MAX_ROWS; i++)
+      memory_copy(video_memory, video_memory+(MAX_COLS*2), MAX_COLS*2);
+   
+   cursor_offset -= 2*MAX_COLS;
+
+   return cursor_offset;
 }
 
 
