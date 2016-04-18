@@ -29,3 +29,4 @@ void print_message(char* video_memory, char s[]);
 void set_cursor(int, int);
 int get_cursor();
 int handle_scrolling(int);
+void scroll_up();

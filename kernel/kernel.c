@@ -14,12 +14,17 @@ void main()
    clear_screen(video_memory);
 
    for (i=0; hello[i] != 0; i++)
-      print_char(hello[i], 2, i, 0);
+      print_char(hello[i], 1, i, 0);
+
 
    for (i=0; hello[i] != 0; i++)
-      print_char(hello[i], 20, i, 0);
+      print_char(hello[i], 25, i, 0);
+
+   scroll_up();
 
 /*
+   handle_scrolling(0);
+
    memory_copy(video_memory, video_memory + 100, 10);
    set_cursor(5, 0);
    cursor = get_cursor();

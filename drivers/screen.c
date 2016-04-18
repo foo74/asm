@@ -24,8 +24,20 @@ void print_char(char character, int row, int col, char attribute_byte)
       vidmem[offset+1] = attribute_byte;
    }
 
-   /*offset = handle_scrolling(offset);*/
-   set_cursor(row, col + 1);
+   /* offset = handle_scrolling(offset); */
+   /* set_cursor(row, col + 1); */
+}
+
+void scroll_up()
+{
+   int i;
+   unsigned char *video_memory = (unsigned char *)VIDEO_MEMORY;
+
+   for (i=0; i<=MAX_ROWS; i++)
+   {
+      memory_copy((video_memory+160), video_memory, 160);
+      video_memory += 160;
+   }
 }
 
 int handle_scrolling(int cursor_offset)
@@ -34,13 +46,23 @@ int handle_scrolling(int cursor_offset)
    unsigned char *video_memory = (unsigned char *)VIDEO_MEMORY;
 
    /* if cursor is in the start buffer size then don't scroll */
-   if (cursor_offset < (MAX_ROWS*MAX_COLS*2))
+   /*
+   if (cursor_offset < (MAX_ROWS*MAX_COLS))
       return cursor_offset;
-
-   for (i=1; i<MAX_ROWS; i++)
-      memory_copy(video_memory, video_memory+(MAX_COLS*2), MAX_COLS*2);
+   else
+   */
+      for (i=0; i<MAX_ROWS; i++)
+      {
+         memory_copy((video_memory+160), video_memory, 160);
+         video_memory += 160;
+      }
+/*
+      memory_copy(video_memory+(MAX_COLS*2), video_memory, MAX_COLS*2);
+      video_memory += (MAX_COLS*2);
+      memory_copy(video_memory+(MAX_COLS*2), video_memory, MAX_COLS*2);
+*/
    
-   cursor_offset -= 2*MAX_COLS;
+   cursor_offset -= MAX_COLS;
 
    return cursor_offset;
 }
