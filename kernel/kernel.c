@@ -8,16 +8,29 @@ void main()
     * of video memory (i.e. the top-left of the screen). */
    char* video_memory =  (char *)VIDEO_MEMORY;
    char hello[] = "HELLO";
+   char bye[] = "BYE BYE";
+   char starting[] = "Foo OS booting...";
    int cursor;
    int i;
    int a;
    size_t size;
+   size_t size2;
+   size_t size3;
    i = a = 0;
 
    size = sizeof(hello) / sizeof(hello[0]);
+   size2 = sizeof(bye) / sizeof(bye[0]);
+   size3 = sizeof(starting) / sizeof(starting[0]);
+   
 
    clear_screen(video_memory);
-   print_string(hello, size, 30);
+   print_string(starting, size3, 0);
+   for (i=0; i<0xaffffff;i++)
+      a += 10;
+   print_string(hello, size, 20);
+   for (i=0; i<0xaffffff;i++)
+      a += 10;
+   print_string(bye, size2, 30);
 
 /*
 

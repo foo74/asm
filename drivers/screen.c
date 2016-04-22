@@ -139,6 +139,7 @@ void clear_screen(char* video_memory)
          *video_memory++ = CHAR_COLOR;
       }
    }
+   set_cursor(0, 1);
 }
 
 /* https://littleosbook.github.io/#moving-the-cursor provide info how */
