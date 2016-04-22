@@ -9,10 +9,17 @@ void main()
    char* video_memory =  (char *)VIDEO_MEMORY;
    char hello[] = "HELLO";
    int cursor;
-   int i, a;
+   int i;
+   int a;
+   size_t size;
    i = a = 0;
 
+   size = sizeof(hello) / sizeof(hello[0]);
+
    clear_screen(video_memory);
+   print_string(hello, size, 30);
+
+/*
 
    for (i=0; hello[i] != 0; i++)
       print_char(hello[i], 2, i, 0);
@@ -20,16 +27,19 @@ void main()
    for (i=0; hello[i] != 0; i++)
       print_char(hello[i], 3, i, 0);
 
-   while ( a < 0xffffffff )
+   while ( a < 0xfffffff )
       a = a + 1;
 
    for (i=0; hello[i] != 0; i++)
       print_char(hello[i], 25, i, 0);
    for (i=0; hello[i] != 0; i++)
       print_char(hello[i], 26, i, 0);
+*/
 
+/*
    scroll_up();
    scroll_up();
+*/
 
 /*
    handle_scrolling(0);
