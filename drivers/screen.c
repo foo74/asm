@@ -6,28 +6,50 @@ void print_string(char input[], size_t string_length, char row)
    unsigned char *vidmem = (unsigned char *)VIDEO_MEMORY;
    int i;
    int j;
+   int newline_count;
+   int chars_on_line;
+   newline_count = 0;
+   chars_on_line = 0;
 
-   if (row > MAX_ROWS)
-      vidmem += ((MAX_ROWS-1)*MAX_COLS*2);
-   else
-      vidmem += row*160;
-
+   /* If the row is beyond the buffer then scroll else just
+    * set the row * 160 since buffer is 80 chars across and
+    * each char also has another char that is the color. 
+    */
    if (row > MAX_ROWS)
    {
+      vidmem += ((MAX_ROWS-1)*MAX_COLS*2);
+      set_colors();
+
       for (int i=row-MAX_ROWS-1; i >= 0; i--)
       {
          scroll_up();
       }
-      set_colors();
+
       set_cursor(MAX_ROWS-1, string_length-1);
    }
    else
-      set_cursor(row, string_length-1);
+   {
+      vidmem += row*160;
+   }
 
+
+   /* Print out the string and account for newline chars. */
    for (i=0, j=0; input[i] != 0; i++)
    {
-      vidmem[j++] = input[i]; 
-      vidmem[j++] = CHAR_COLOR; 
+      if (input[i] == '\n')
+      {
+         newline_count++;
+
+         j += (160-(chars_on_line*2));
+         set_cursor(row+newline_count, string_length-i-2);
+         chars_on_line = 0;
+      }
+      else
+      {
+         vidmem[j++] = input[i]; 
+         vidmem[j++] = CHAR_COLOR; 
+         chars_on_line++;
+      }
    }
 }
 
